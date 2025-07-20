@@ -1,6 +1,6 @@
 import { Coin } from "@/components/citadel/coin";
 import { MatchmakingCard } from "@/components/citadel/matchmaking-card";
-import { WalletCard } from "@/components/citadel/wallet-card";
+import { ProfileCard } from "@/components/citadel/profile-card";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import {
   Carousel,
@@ -27,7 +27,7 @@ export default function HomePage() {
           </CarouselItem>
           <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3">
              <div className="h-full">
-              <WalletCard />
+              <ProfileCard />
              </div>
           </CarouselItem>
           <CarouselItem className="pl-4 md:basis-1/2 lg:basis-full">
