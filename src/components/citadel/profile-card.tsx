@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Separator } from "../ui/separator";
 import * as React from "react";
 import { useToast } from "@/hooks/use-toast";
+import { Label } from "../ui/label";
 
 const copyToClipboard = (text: string, toast: (options: any) => void) => {
     navigator.clipboard.writeText(text).then(() => {
