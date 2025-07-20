@@ -16,7 +16,6 @@ export function SidePanel() {
       )}
     >
       <h3 className="font-headline text-lg">Side Panel</h3>
-      <p className="text-sm text-muted-foreground">Future content goes here.</p>
     </aside>
   );
 }
