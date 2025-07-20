@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
 import { useSimulatedWallet } from "@/hooks/use-simulated-wallet";
 import { PlusCircle } from "lucide-react";
 
@@ -37,8 +36,7 @@ export function CreateGameCard() {
     },
   });
 
-  const { control, handleSubmit, watch, setValue } = form;
-  const wagerValue = watch("wager");
+  const { control, handleSubmit, setValue } = form;
 
   const onSubmit = (data: CreateGameForm) => {
     setIsCreating(true);
@@ -50,17 +48,12 @@ export function CreateGameCard() {
     }, 2000);
   };
 
-  const handleSliderChange = (value: number[]) => {
-    setValue("wager", value[0], { shouldValidate: true });
-  };
-  
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value === '' ? 0 : parseFloat(event.target.value);
     if (!isNaN(value)) {
         setValue("wager", value, { shouldValidate: true });
     }
   }
-
 
   if (!connected) {
     return (
@@ -119,25 +112,6 @@ export function CreateGameCard() {
             {form.formState.errors.wager && (
               <p className="text-sm text-destructive">{form.formState.errors.wager.message}</p>
             )}
-          </div>
-          <div className="space-y-2">
-            <Controller
-              name="wager"
-              control={control}
-              render={({ field }) => (
-                <Slider
-                  value={[field.value]}
-                  onValueChange={handleSliderChange}
-                  min={0.01}
-                  max={10}
-                  step={0.01}
-                />
-              )}
-            />
-             <div className="flex justify-between text-xs text-muted-foreground font-mono">
-                <span>◎ 0.01</span>
-                <span>◎ 10.00</span>
-            </div>
           </div>
         </CardContent>
         <CardFooter>
