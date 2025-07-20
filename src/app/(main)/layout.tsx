@@ -1,4 +1,5 @@
 import { AppHeader } from "@/components/layout/app-header";
+import { SidePanel } from "@/components/layout/side-panel";
 
 export default function MainLayout({
   children,
@@ -10,9 +11,7 @@ export default function MainLayout({
       <AppHeader />
       <div className="flex flex-1 container mx-auto max-w-7xl">
         <main className="flex-1 p-4 sm:p-6 lg:p-8">{children}</main>
-        <aside className="hidden lg:block w-80 border-l border-border/40 p-6">
-          {/* Side Panel Content */}
-        </aside>
+        <SidePanel />
       </div>
     </div>
   );
