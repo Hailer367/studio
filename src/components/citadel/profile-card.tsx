@@ -17,14 +17,14 @@ export function ProfileCard() {
   const { toast } = useToast();
   const [copied, setCopied] = React.useState<string | null>(null);
 
-  const copyToClipboard = (text: string, toastFn: (options: any) => void) => {
+  const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
-        toastFn({ title: "Copied to clipboard!", description: text });
+        toast({ title: "Copied to clipboard!", description: text });
     });
   };
 
   const handleCopy = (text: string, type: string) => {
-    copyToClipboard(text, toast);
+    copyToClipboard(text);
     setCopied(type);
     setTimeout(() => setCopied(null), 2000);
   };
