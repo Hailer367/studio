@@ -3,7 +3,7 @@
 
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { PanelRightOpen, PanelRightClose } from "lucide-react";
+import { PanelLeftOpen, PanelLeftClose } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -27,7 +27,7 @@ export function SidePanel() {
       >
         <aside
           className={cn(
-            "h-full overflow-hidden border-l border-border/40",
+            "h-full overflow-hidden border-r border-border/40",
             isOpen ? "p-6" : "p-0"
           )}
         >
@@ -41,10 +41,10 @@ export function SidePanel() {
         variant="outline"
         size="icon"
         onClick={() => setIsOpen(!isOpen)}
-        className="absolute -left-12 top-6 rounded-full"
+        className="absolute -right-12 top-6 rounded-full"
         aria-label={isOpen ? "Close panel" : "Open panel"}
       >
-        {isOpen ? <PanelRightClose /> : <PanelRightOpen />}
+        {isOpen ? <PanelLeftClose /> : <PanelLeftOpen />}
       </Button>
     </div>
   );
