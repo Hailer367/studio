@@ -1,3 +1,4 @@
+import { Coin } from "@/components/citadel/coin";
 import { CreateGameCard } from "@/components/citadel/create-game-card";
 import { MatchmakingCard } from "@/components/citadel/matchmaking-card";
 import { ProfileCard } from "@/components/citadel/profile-card";

@@ -9,6 +9,7 @@ import { useSimulatedWallet } from "@/hooks/use-simulated-wallet";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { ScrollArea } from "../ui/scroll-area";
+import { Coin } from "./coin";
 
 type MatchmakingState = "idle" | "searching" | "found";
 
@@ -83,28 +84,34 @@ export function MatchmakingCard() {
           </div>
         )}
         {state === "found" && (
-            <div className="flex flex-col items-center gap-6 text-center w-full">
+            <div className="flex flex-col items-center gap-4 text-center w-full">
                 <p className="font-headline text-2xl text-primary tracking-widest">Match Found!</p>
-                <div className="flex items-center justify-around w-full">
+                <div className="grid grid-cols-3 items-center justify-items-center w-full gap-4">
                     <div className="flex flex-col items-center gap-2">
-                        <Avatar className="h-24 w-24 border-4 border-primary shadow-lg">
+                        <Avatar className="h-20 w-20 border-4 border-primary shadow-lg">
                             <AvatarImage src="https://placehold.co/100x100" alt="Your avatar" data-ai-hint="warrior avatar" />
                             <AvatarFallback>YOU</AvatarFallback>
                         </Avatar>
-                        <p className="font-bold text-lg">You</p>
+                        <p className="font-bold text-base">You</p>
                     </div>
-                    <Swords className="h-12 w-12 text-muted-foreground shrink-0 mx-4" />
+                    <Coin />
                     <div className="flex flex-col items-center gap-2">
-                         <Avatar className="h-24 w-24 border-4 border-destructive shadow-lg">
+                         <Avatar className="h-20 w-20 border-4 border-destructive shadow-lg">
                             <AvatarImage src="https://placehold.co/100x100" alt="Opponent's avatar" data-ai-hint="mage avatar"/>
                             <AvatarFallback>OPP</AvatarFallback>
                         </Avatar>
-                        <p className="font-bold text-lg">RuneMaster69</p>
+                        <p className="font-bold text-base">RuneMaster69</p>
                     </div>
                 </div>
-                 <Button onClick={handleReset} variant="outline" className="mt-4">
-                    Return to Lobby
-                </Button>
+                 <div className="flex items-center gap-4 mt-4">
+                    <Button onClick={handleReset} variant="outline" size="sm">
+                        Back to Lobby
+                    </Button>
+                    <Button size="sm" className="font-headline tracking-wider animate-pulse">
+                        <Swords className="mr-2 h-4 w-4" />
+                        FLIP COIN
+                    </Button>
+                 </div>
             </div>
         )}
       </CardContent>
