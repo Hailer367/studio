@@ -6,7 +6,7 @@ import { Separator } from "@/components/ui/separator";
 
 export default function HomePage() {
   return (
-    <div className="space-y-8">
+    <div className="container mx-auto max-w-7xl space-y-8">
       <div>
         <h1 className="text-4xl font-headline text-white">Welcome, Challenger</h1>
         <p className="text-muted-foreground">Fate awaits your coin flip. Will you emerge victorious?</p>
@@ -27,7 +27,7 @@ export default function HomePage() {
                     <CardTitle className="font-headline">The Citadel's Coin</CardTitle>
                     <CardDescription>This mystical artifact determines the fate of each match.</CardDescription>
                 </CardHeader>
-                <CardContent className="flex items-center justify-center p-6">
+                <CardContent className="flex items-center justify-center p-12">
                    <Coin />
                 </CardContent>
             </Card>

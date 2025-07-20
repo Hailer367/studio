@@ -28,17 +28,14 @@ export function MatchmakingCard() {
 
   return (
     <Card className="h-full flex flex-col">
-      <CardHeader className="flex flex-row items-center gap-4">
-        <Swords className="h-8 w-8 text-accent" />
-        <div>
-          <CardTitle className="font-headline">Play a Match</CardTitle>
-          <CardDescription>Find an opponent and flip for glory.</CardDescription>
-        </div>
+      <CardHeader>
+        <CardTitle className="font-headline">The Arena</CardTitle>
+        <CardDescription>Find an opponent and flip for glory.</CardDescription>
       </CardHeader>
-      <CardContent className="flex-grow flex items-center justify-center">
+      <CardContent className="flex-grow flex items-center justify-center p-6">
         {state === "idle" && (
           <div className="text-center">
-            <Button size="lg" onClick={handleFindMatch} disabled={!connected}>
+            <Button size="lg" onClick={handleFindMatch} disabled={!connected} className="font-headline text-lg tracking-wider">
               Find Match
             </Button>
             {!connected && <p className="text-sm text-muted-foreground mt-4">Connect your wallet to play.</p>}
@@ -47,32 +44,32 @@ export function MatchmakingCard() {
         {state === "searching" && (
           <div className="flex flex-col items-center gap-4 text-center">
             <Loader2 className="h-16 w-16 animate-spin text-primary" />
-            <p className="font-semibold text-lg">Searching for opponent...</p>
+            <p className="font-semibold text-lg font-headline">Searching for opponent...</p>
             <p className="text-muted-foreground">The runes are casting, a worthy foe will appear soon.</p>
           </div>
         )}
         {state === "found" && (
-            <div className="flex flex-col items-center gap-4 text-center w-full">
-                <p className="font-semibold text-lg text-primary">Match Found!</p>
+            <div className="flex flex-col items-center gap-6 text-center w-full">
+                <p className="font-headline text-2xl text-primary tracking-widest">Match Found!</p>
                 <div className="flex items-center justify-around w-full">
                     <div className="flex flex-col items-center gap-2">
-                        <Avatar className="h-20 w-20 border-2 border-primary">
+                        <Avatar className="h-24 w-24 border-4 border-primary shadow-lg">
                             <AvatarImage src="https://placehold.co/100x100" alt="Your avatar" data-ai-hint="warrior avatar" />
                             <AvatarFallback>YOU</AvatarFallback>
                         </Avatar>
-                        <p className="font-bold">You</p>
+                        <p className="font-bold text-lg">You</p>
                     </div>
-                    <Swords className="h-8 w-8 text-muted-foreground shrink-0" />
+                    <Swords className="h-12 w-12 text-muted-foreground shrink-0 mx-4" />
                     <div className="flex flex-col items-center gap-2">
-                         <Avatar className="h-20 w-20 border-2 border-destructive">
+                         <Avatar className="h-24 w-24 border-4 border-destructive shadow-lg">
                             <AvatarImage src="https://placehold.co/100x100" alt="Opponent's avatar" data-ai-hint="mage avatar"/>
                             <AvatarFallback>OPP</AvatarFallback>
                         </Avatar>
-                        <p className="font-bold">RuneMaster69</p>
+                        <p className="font-bold text-lg">RuneMaster69</p>
                     </div>
                 </div>
                  <Button onClick={handleReset} variant="outline" className="mt-4">
-                    Back to Lobby
+                    Return to Lobby
                 </Button>
             </div>
         )}

@@ -10,8 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['"PT Sans"', 'sans-serif'],
-        headline: ['"Playfair Display"', 'serif'],
+        body: ['var(--font-inter)', 'sans-serif'],
+        headline: ['var(--font-cinzel)', 'serif'],
         code: ['monospace'],
       },
       colors: {
@@ -54,17 +54,7 @@ export default {
           '3': 'hsl(var(--chart-3))',
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
-        },
-        sidebar: {
-          DEFAULT: 'hsl(var(--sidebar-background))',
-          foreground: 'hsl(var(--sidebar-foreground))',
-          primary: 'hsl(var(--sidebar-primary))',
-          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-          accent: 'hsl(var(--sidebar-accent))',
-          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-          border: 'hsl(var(--sidebar-border))',
-          ring: 'hsl(var(--sidebar-ring))',
-        },
+        }
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -90,10 +80,10 @@ export default {
         },
         'coin-glow': {
           '0%, 100%': {
-            filter: 'drop-shadow(0 0 2px hsl(var(--primary) / 0.7)) drop-shadow(0 0 8px hsl(var(--primary) / 0.5))',
+            filter: 'drop-shadow(0 0 3px hsl(var(--primary) / 0.8)) drop-shadow(0 0 10px hsl(var(--primary) / 0.6))',
           },
           '50%': {
-             filter: 'drop-shadow(0 0 5px hsl(var(--primary) / 0.9)) drop-shadow(0 0 15px hsl(var(--primary) / 0.7))',
+             filter: 'drop-shadow(0 0 6px hsl(var(--primary) / 1)) drop-shadow(0 0 20px hsl(var(--primary) / 0.8))',
           }
         }
       },
