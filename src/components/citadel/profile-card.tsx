@@ -12,17 +12,16 @@ import * as React from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Label } from "../ui/label";
 
-const copyToClipboard = (text: string, toastFn: (options: any) => void) => {
-    navigator.clipboard.writeText(text).then(() => {
-        toastFn({ title: "Copied to clipboard!", description: text });
-    });
-};
-
-
 export function ProfileCard() {
   const { connected, publicKey, connect } = useSimulatedWallet();
   const { toast } = useToast();
   const [copied, setCopied] = React.useState<string | null>(null);
+
+  const copyToClipboard = (text: string, toastFn: (options: any) => void) => {
+    navigator.clipboard.writeText(text).then(() => {
+        toastFn({ title: "Copied to clipboard!", description: text });
+    });
+  };
 
   const handleCopy = (text: string, type: string) => {
     copyToClipboard(text, toast);
