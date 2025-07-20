@@ -19,7 +19,7 @@ import { useSimulatedWallet } from "@/hooks/use-simulated-wallet";
 import { PlusCircle } from "lucide-react";
 
 const createGameSchema = z.object({
-  wager: z.number().min(0.01, "Wager must be at least 0.01 SOL").max(10, "Wager cannot exceed 10 SOL"),
+  wager: z.coerce.number().min(0.01, "Wager must be at least 0.01 SOL").max(10, "Wager cannot exceed 10 SOL"),
 });
 
 type CreateGameForm = z.infer<typeof createGameSchema>;
@@ -36,7 +36,7 @@ export function CreateGameCard() {
     },
   });
 
-  const { control, handleSubmit, setValue } = form;
+  const { control, handleSubmit } = form;
 
   const onSubmit = (data: CreateGameForm) => {
     setIsCreating(true);
@@ -47,13 +47,6 @@ export function CreateGameCard() {
       setTimeout(() => setIsCreated(false), 3000); // Reset after 3s
     }, 2000);
   };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value === '' ? 0 : parseFloat(event.target.value);
-    if (!isNaN(value)) {
-        setValue("wager", value, { shouldValidate: true });
-    }
-  }
 
   if (!connected) {
     return (
@@ -102,8 +95,6 @@ export function CreateGameCard() {
                             type="number"
                             step="0.01"
                             {...field}
-                            onChange={handleInputChange}
-                            value={field.value}
                             className="text-lg font-mono w-full"
                           />
                     )}
