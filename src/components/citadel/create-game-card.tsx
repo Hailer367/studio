@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -17,9 +18,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useSimulatedWallet } from "@/hooks/use-simulated-wallet";
 import { PlusCircle } from "lucide-react";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { RuneIcon } from "../icons/rune-icon";
 
 const createGameSchema = z.object({
   wager: z.coerce.number().min(0.01, "Wager must be at least 0.01 SOL").max(10, "Wager cannot exceed 10 SOL"),
+  side: z.enum(["light", "dark"]),
 });
 
 type CreateGameForm = z.infer<typeof createGameSchema>;
@@ -33,6 +37,7 @@ export function CreateGameCard() {
     resolver: zodResolver(createGameSchema),
     defaultValues: {
       wager: 1,
+      side: "light",
     },
   });
 
@@ -40,7 +45,7 @@ export function CreateGameCard() {
 
   const onSubmit = (data: CreateGameForm) => {
     setIsCreating(true);
-    console.log("Creating game with wager:", data.wager);
+    console.log("Creating game with:", data);
     setTimeout(() => {
       setIsCreating(false);
       setIsCreated(true);
@@ -104,6 +109,33 @@ export function CreateGameCard() {
               <p className="text-sm text-destructive">{form.formState.errors.wager.message}</p>
             )}
           </div>
+
+          <Controller
+            name="side"
+            control={control}
+            render={({ field }) => (
+              <RadioGroup
+                onValueChange={field.onChange}
+                defaultValue={field.value}
+                className="space-y-2"
+              >
+                <Label>Choose Your Side</Label>
+                <div className="grid grid-cols-2 gap-4">
+                  <RadioGroupItem value="light" id="light" className="sr-only" />
+                  <Label htmlFor="light" className="flex flex-col items-center justify-center rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground cursor-pointer [&:has([data-state=checked])]:border-primary">
+                    <RuneIcon className="h-8 w-8 mb-2 text-primary" />
+                    Light
+                  </Label>
+                  
+                  <RadioGroupItem value="dark" id="dark" className="sr-only" />
+                   <Label htmlFor="dark" className="flex flex-col items-center justify-center rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground cursor-pointer [&:has([data-state=checked])]:border-accent">
+                    <RuneIcon className="h-8 w-8 mb-2 text-accent -scale-x-100" />
+                    Dark
+                  </Label>
+                </div>
+              </RadioGroup>
+            )}
+          />
         </CardContent>
         <CardFooter>
           <Button type="submit" className="w-full font-headline tracking-wider" disabled={isCreating}>
