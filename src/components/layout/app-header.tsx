@@ -6,13 +6,12 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Logo } from "../icons/logo";
 import { useSimulatedWallet } from "@/hooks/use-simulated-wallet";
-import { BrainCircuit, History, Swords, Wallet } from "lucide-react";
+import { History, Swords, Wallet } from "lucide-react";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
 const navItems = [
     { href: "/", label: "Game", icon: Swords },
     { href: "/history", label: "History", icon: History },
-    { href: "/marketing", label: "AI Oracle", icon: BrainCircuit },
 ];
 
 export function AppHeader() {
