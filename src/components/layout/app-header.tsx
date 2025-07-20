@@ -6,8 +6,9 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Logo } from "../icons/logo";
 import { useSimulatedWallet } from "@/hooks/use-simulated-wallet";
-import { History, Swords, Wallet } from "lucide-react";
+import { History, Swords, Wallet, PanelLeftOpen, PanelLeftClose } from "lucide-react";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
+import { useSidePanel } from "@/hooks/use-side-panel";
 
 const navItems = [
     { href: "/", label: "Game", icon: Swords },
@@ -17,10 +18,21 @@ const navItems = [
 export function AppHeader() {
     const pathname = usePathname();
     const { connected, connect, disconnect, publicKey } = useSimulatedWallet();
+    const { isOpen, toggle } = useSidePanel();
 
     return (
         <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="container flex h-16 max-w-7xl items-center">
+                 <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={toggle}
+                    className="mr-2"
+                    aria-label={isOpen ? "Close panel" : "Open panel"}
+                >
+                    {isOpen ? <PanelLeftClose /> : <PanelLeftOpen />}
+                </Button>
+
                 <Link href="/" className="mr-4 flex items-center space-x-2">
                     <Logo className="h-8 w-8" />
                     <span className="font-bold inline-block font-headline text-lg">Citadel Coin</span>

@@ -9,9 +9,9 @@ export default function MainLayout({
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <AppHeader />
-      <div className="flex flex-1 container mx-auto max-w-7xl">
+      <div className="flex flex-1 container mx-auto max-w-7xl overflow-hidden">
         <SidePanel />
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">{children}</main>
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-auto">{children}</main>
       </div>
     </div>
   );
