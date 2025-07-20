@@ -2,7 +2,13 @@ import { Coin } from "@/components/citadel/coin";
 import { MatchmakingCard } from "@/components/citadel/matchmaking-card";
 import { WalletCard } from "@/components/citadel/wallet-card";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function HomePage() {
   return (
@@ -12,27 +18,33 @@ export default function HomePage() {
         <p className="text-muted-foreground">Fate awaits your coin flip. Will you emerge victorious?</p>
       </div>
 
-      <Separator />
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
-            <MatchmakingCard />
-        </div>
-        <div className="lg:col-span-1">
-            <WalletCard />
-        </div>
-        <div className="lg:col-span-3">
-             <Card>
-                <CardHeader>
-                    <CardTitle className="font-headline">The Citadel's Coin</CardTitle>
-                    <CardDescription>This mystical artifact determines the fate of each match.</CardDescription>
-                </CardHeader>
-                <CardContent className="flex items-center justify-center p-12">
-                   <Coin />
-                </CardContent>
+      <Carousel className="w-full">
+        <CarouselContent className="-ml-4">
+          <CarouselItem className="pl-4 md:basis-1/2 lg:basis-2/3">
+            <div className="h-full">
+              <MatchmakingCard />
+            </div>
+          </CarouselItem>
+          <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3">
+             <div className="h-full">
+              <WalletCard />
+             </div>
+          </CarouselItem>
+          <CarouselItem className="pl-4 md:basis-1/2 lg:basis-full">
+            <Card>
+              <CardHeader>
+                  <CardTitle className="font-headline">The Citadel's Coin</CardTitle>
+                  <CardDescription>This mystical artifact determines the fate of each match.</CardDescription>
+              </CardHeader>
+              <CardContent className="flex items-center justify-center p-12">
+                  <Coin />
+              </CardContent>
             </Card>
-        </div>
-      </div>
+          </CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious className="hidden lg:flex" />
+        <CarouselNext className="hidden lg:flex" />
+      </Carousel>
     </div>
   );
 }
