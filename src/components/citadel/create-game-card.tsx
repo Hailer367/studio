@@ -55,7 +55,7 @@ export function CreateGameCard() {
   };
   
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseFloat(event.target.value);
+    const value = event.target.value === '' ? 0 : parseFloat(event.target.value);
     if (!isNaN(value)) {
         setValue("wager", value, { shouldValidate: true });
     }
@@ -110,7 +110,7 @@ export function CreateGameCard() {
                             step="0.01"
                             {...field}
                             onChange={handleInputChange}
-                            value={field.value || ''}
+                            value={field.value}
                             className="text-lg font-mono w-full"
                           />
                     )}
