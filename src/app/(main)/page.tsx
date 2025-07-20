@@ -1,7 +1,6 @@
-import { Coin } from "@/components/citadel/coin";
+import { CreateGameCard } from "@/components/citadel/create-game-card";
 import { MatchmakingCard } from "@/components/citadel/matchmaking-card";
 import { ProfileCard } from "@/components/citadel/profile-card";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -20,26 +19,20 @@ export default function HomePage() {
 
       <Carousel className="w-full">
         <CarouselContent className="-ml-4">
-          <CarouselItem className="pl-4 md:basis-1/2 lg:basis-2/3">
+          <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/2">
             <div className="h-full">
               <MatchmakingCard />
             </div>
           </CarouselItem>
-          <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3">
+          <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/2">
+            <div className="h-full">
+              <CreateGameCard />
+            </div>
+          </CarouselItem>
+          <CarouselItem className="pl-4 md:basis-1/2 lg:basis-full">
              <div className="h-full">
               <ProfileCard />
              </div>
-          </CarouselItem>
-          <CarouselItem className="pl-4 md:basis-1/2 lg:basis-full">
-            <Card>
-              <CardHeader>
-                  <CardTitle className="font-headline">The Citadel's Coin</CardTitle>
-                  <CardDescription>This mystical artifact determines the fate of each match.</CardDescription>
-              </CardHeader>
-              <CardContent className="flex items-center justify-center p-12">
-                  <Coin />
-              </CardContent>
-            </Card>
           </CarouselItem>
         </CarouselContent>
         <CarouselPrevious className="hidden lg:flex" />

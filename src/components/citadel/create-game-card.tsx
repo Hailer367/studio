@@ -1,0 +1,151 @@
+"use client";
+
+import * as React from "react";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
+import { useSimulatedWallet } from "@/hooks/use-simulated-wallet";
+import { PlusCircle } from "lucide-react";
+
+const createGameSchema = z.object({
+  wager: z.number().min(0.01, "Wager must be at least 0.01 SOL").max(10, "Wager cannot exceed 10 SOL"),
+});
+
+type CreateGameForm = z.infer<typeof createGameSchema>;
+
+export function CreateGameCard() {
+  const { connected } = useSimulatedWallet();
+  const [isCreating, setIsCreating] = React.useState(false);
+  const [isCreated, setIsCreated] = React.useState(false);
+
+  const form = useForm<CreateGameForm>({
+    resolver: zodResolver(createGameSchema),
+    defaultValues: {
+      wager: 1,
+    },
+  });
+
+  const { control, handleSubmit, watch, setValue } = form;
+  const wagerValue = watch("wager");
+
+  const onSubmit = (data: CreateGameForm) => {
+    setIsCreating(true);
+    console.log("Creating game with wager:", data.wager);
+    setTimeout(() => {
+      setIsCreating(false);
+      setIsCreated(true);
+      setTimeout(() => setIsCreated(false), 3000); // Reset after 3s
+    }, 2000);
+  };
+
+  const handleSliderChange = (value: number[]) => {
+    setValue("wager", value[0], { shouldValidate: true });
+  };
+  
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseFloat(event.target.value);
+    if (!isNaN(value)) {
+        setValue("wager", value, { shouldValidate: true });
+    }
+  }
+
+
+  if (!connected) {
+    return (
+      <Card className="h-full flex flex-col items-center justify-center text-center">
+        <CardHeader>
+          <CardTitle className="font-headline">Create a Match</CardTitle>
+          <CardDescription>Set your own terms for battle.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p className="text-muted-foreground">Connect your wallet to create a game.</p>
+        </CardContent>
+      </Card>
+    );
+  }
+  
+  if (isCreated) {
+    return (
+        <Card className="h-full flex flex-col items-center justify-center text-center bg-green-900/20 border-green-500/50">
+            <CardContent className="p-6">
+                <PlusCircle className="h-16 w-16 text-green-400 mx-auto mb-4" />
+                <h2 className="text-2xl font-headline text-white">Game Created!</h2>
+                <p className="text-green-300/80">Your challenge has been added to the lobby.</p>
+            </CardContent>
+        </Card>
+    )
+  }
+
+  return (
+    <Card className="h-full flex flex-col">
+      <CardHeader>
+        <CardTitle className="font-headline">Create a Match</CardTitle>
+        <CardDescription>Set your own terms for battle.</CardDescription>
+      </CardHeader>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col flex-grow">
+        <CardContent className="flex-grow space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="wager-input">Wager Amount (SOL)</Label>
+            <div className="flex items-center gap-2">
+                <span className="font-bold text-lg text-primary">◎</span>
+                <Controller
+                    name="wager"
+                    control={control}
+                    render={({ field }) => (
+                         <Input
+                            id="wager-input"
+                            type="number"
+                            step="0.01"
+                            {...field}
+                            onChange={handleInputChange}
+                            value={field.value || ''}
+                            className="text-lg font-mono w-full"
+                          />
+                    )}
+                />
+            </div>
+            {form.formState.errors.wager && (
+              <p className="text-sm text-destructive">{form.formState.errors.wager.message}</p>
+            )}
+          </div>
+          <div className="space-y-2">
+            <Controller
+              name="wager"
+              control={control}
+              render={({ field }) => (
+                <Slider
+                  value={[field.value]}
+                  onValueChange={handleSliderChange}
+                  min={0.01}
+                  max={10}
+                  step={0.01}
+                />
+              )}
+            />
+             <div className="flex justify-between text-xs text-muted-foreground font-mono">
+                <span>◎ 0.01</span>
+                <span>◎ 10.00</span>
+            </div>
+          </div>
+        </CardContent>
+        <CardFooter>
+          <Button type="submit" className="w-full font-headline tracking-wider" disabled={isCreating}>
+            {isCreating ? 'Staking your claim...' : 'Create Game'}
+          </Button>
+        </CardFooter>
+      </form>
+    </Card>
+  );
+}
