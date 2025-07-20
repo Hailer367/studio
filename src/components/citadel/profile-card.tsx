@@ -129,7 +129,9 @@ export function ProfileCard() {
         <CardFooter>
             <Button asChild variant="outline" className="w-full">
                 <Link href="/history">
-                    <History /> View Match History
+                    <>
+                        <History /> View Match History
+                    </>
                 </Link>
             </Button>
         </CardFooter>
