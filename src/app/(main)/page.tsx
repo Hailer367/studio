@@ -30,7 +30,7 @@ export default function HomePage() {
               <CreateGameCard />
             </div>
           </CarouselItem>
-          <CarouselItem className="pl-4 md:basis-1/2 lg:basis-full">
+          <CarouselItem className="pl-4 w-full">
              <div className="h-full">
               <ProfileCard />
              </div>
