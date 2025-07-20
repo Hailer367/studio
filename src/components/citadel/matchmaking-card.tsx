@@ -40,7 +40,7 @@ export function MatchmakingCard() {
     <Card className="h-full flex flex-col">
       <CardHeader>
         <CardTitle className="font-headline">The Arena</CardTitle>
-        <CardDescription>Find an opponent and flip for glory.</CardDescription>
+        <CardDescription>Challenge a rival and stake your claim.</CardDescription>
       </CardHeader>
       <CardContent className="flex-grow flex flex-col justify-center p-6">
         {state === "idle" && (
