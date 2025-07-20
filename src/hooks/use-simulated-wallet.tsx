@@ -18,7 +18,7 @@ export function SimulatedWalletProvider({ children }: { children: ReactNode }) {
   const connect = useCallback(() => {
     // Simulate wallet connection
     setTimeout(() => {
-      const fakePublicKey = "C1tADE" + Math.random().toString(36).substring(2, 12).toUpperCase() + "...";
+      const fakePublicKey = "C1tADE" + Math.random().toString(36).substring(2, 12).toUpperCase() + "L3GEND";
       setPublicKey(fakePublicKey);
       setConnected(true);
     }, 500);
