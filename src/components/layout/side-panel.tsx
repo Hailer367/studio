@@ -2,20 +2,51 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useSidePanel } from "@/hooks/use-side-panel";
+import { buttonVariants } from "../ui/button";
+import { History, Settings, Swords } from "lucide-react";
+
+const navItems = [
+    { href: "/", label: "Game", icon: Swords },
+    { href: "/history", label: "History", icon: History },
+    { href: "/settings", label: "Settings", icon: Settings },
+];
 
 export function SidePanel() {
   const { isOpen } = useSidePanel();
+  const pathname = usePathname();
 
   return (
     <aside
       className={cn(
         "h-full overflow-hidden border-r border-border/40 transition-all duration-300 ease-in-out",
-        isOpen ? "w-80 p-6" : "w-0 p-0"
+        "flex flex-col",
+        isOpen ? "w-72 p-4" : "w-0 p-0"
       )}
     >
-      <h3 className="font-headline text-lg">Side Panel</h3>
+        <div className={cn("flex-grow", !isOpen && "hidden")}>
+             <nav className="flex flex-col gap-1">
+                {navItems.map((item) => (
+                    <Link
+                        key={item.href}
+                        href={item.href}
+                        className={cn(
+                            buttonVariants({ variant: "ghost", size: "default" }),
+                            pathname === item.href
+                                ? "bg-accent text-accent-foreground"
+                                : "hover:bg-accent/50",
+                            "justify-start"
+                        )}
+                    >
+                        <item.icon className="mr-2 h-5 w-5" />
+                        {item.label}
+                    </Link>
+                ))}
+            </nav>
+        </div>
     </aside>
   );
 }
