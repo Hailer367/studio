@@ -37,7 +37,7 @@ export function MatchFoundDialog({ open, onOpenChange, opponent }: MatchFoundDia
           </DialogDescription>
         </DialogHeader>
         
-        <div className="grid grid-cols-3 items-center justify-items-center w-full gap-4 my-8">
+        <div className="flex items-center justify-between w-full my-8 px-4">
             <div className="flex flex-col items-center gap-2">
                 <Avatar className="h-20 w-20 border-4 border-primary shadow-lg">
                     <AvatarImage src="https://placehold.co/100x100" alt="Your avatar" data-ai-hint="warrior avatar" />
@@ -64,4 +64,5 @@ export function MatchFoundDialog({ open, onOpenChange, opponent }: MatchFoundDia
     </Dialog>
   );
 }
+
 
