@@ -33,7 +33,7 @@ export function MatchFoundDialog({ open, onOpenChange, opponent }: MatchFoundDia
             Match Found!
           </DialogTitle>
           <DialogDescription className="text-center">
-            No turning back. Let the coin fall where it may.
+            The wager is locked. Let the flip decide your fate.
           </DialogDescription>
         </DialogHeader>
         
