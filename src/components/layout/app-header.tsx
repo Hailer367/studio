@@ -14,7 +14,6 @@ const navItems = [
     { href: "/", label: "Game", icon: Swords },
     { href: "/history", label: "History", icon: History },
     { href: "/settings", label: "Settings", icon: Settings },
-    { href: "/terms", label: "Terms", icon: FileText },
 ];
 
 export function AppHeader() {
