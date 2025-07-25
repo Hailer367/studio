@@ -37,23 +37,21 @@ export function MatchFoundDialog({ open, onOpenChange, opponent }: MatchFoundDia
           </DialogDescription>
         </DialogHeader>
         
-        <div className="flex items-center justify-between w-full my-8 px-4">
-            <div className="flex flex-col items-center gap-2 w-24">
+        <div className="flex items-center justify-around w-full my-8">
+            <div className="flex flex-col items-center gap-2">
                 <Avatar className="h-20 w-20 border-4 border-primary shadow-lg">
                     <AvatarImage src="https://placehold.co/100x100" alt="Your avatar" data-ai-hint="warrior avatar" />
                     <AvatarFallback>YOU</AvatarFallback>
                 </Avatar>
-                <p className="font-bold text-base truncate">You</p>
+                <p className="font-bold text-lg">You</p>
             </div>
-            <div className="flex-1 flex justify-center">
-              <Coin />
-            </div>
-            <div className="flex flex-col items-center gap-2 w-24">
+            <Coin />
+            <div className="flex flex-col items-center gap-2">
                   <Avatar className="h-20 w-20 border-4 border-destructive shadow-lg">
                     <AvatarImage src={opponent.avatar} alt="Opponent's avatar" data-ai-hint="mage avatar"/>
                     <AvatarFallback>{opponent.name.substring(0,3)}</AvatarFallback>
                 </Avatar>
-                <p className="font-bold text-base truncate">{opponent.name}</p>
+                <p className="font-bold text-lg truncate max-w-24">{opponent.name}</p>
             </div>
         </div>
         
