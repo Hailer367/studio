@@ -7,13 +7,14 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useSidePanel } from "@/hooks/use-side-panel";
 import { buttonVariants } from "../ui/button";
-import { History, Settings, Swords, FileText } from "lucide-react";
+import { History, Settings, Swords, FileText, Shield } from "lucide-react";
 
 const navItems = [
     { href: "/", label: "Game", icon: Swords },
     { href: "/history", label: "History", icon: History },
     { href: "/settings", label: "Settings", icon: Settings },
     { href: "/terms", label: "Terms", icon: FileText },
+    { href: "/privacy", label: "Privacy", icon: Shield },
 ];
 
 export function SidePanel() {
