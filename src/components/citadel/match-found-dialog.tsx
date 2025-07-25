@@ -27,7 +27,7 @@ export function MatchFoundDialog({ open, onOpenChange, opponent }: MatchFoundDia
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md w-full text-center bg-card/90 backdrop-blur-sm border-primary/50 p-8">
+      <DialogContent className="max-w-md w-full text-center bg-card/80 border-primary/50 p-8">
         <DialogHeader>
           <DialogTitle className="text-3xl font-headline text-primary tracking-widest text-center">
             Match Found!
