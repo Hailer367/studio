@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Swords, User, Loader2, ShieldCheck } from "lucide-react";
@@ -36,7 +36,7 @@ export function MatchmakingCard() {
   const handleReset = () => {
     setState("idle");
   };
-
+  
   return (
     <Card className="h-full flex flex-col">
       <CardHeader>
@@ -106,10 +106,6 @@ export function MatchmakingCard() {
                  <div className="flex items-center gap-4 mt-4">
                     <Button onClick={handleReset} variant="outline" size="sm">
                         Back to Lobby
-                    </Button>
-                    <Button size="sm" className="font-headline tracking-wider animate-pulse">
-                        <Swords className="mr-2 h-4 w-4" />
-                        FLIP COIN
                     </Button>
                  </div>
             </div>

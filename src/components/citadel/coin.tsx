@@ -1,11 +1,20 @@
+
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { RuneIcon } from '../icons/rune-icon';
 
 export function Coin() {
   const [isFlipping, setIsFlipping] = useState(false);
+
+  useEffect(() => {
+    // Automatically flip the coin when the component mounts
+    setIsFlipping(true);
+    const timer = setTimeout(() => setIsFlipping(false), 1000); // Corresponds to animation duration
+    return () => clearTimeout(timer);
+  }, []);
+
 
   const handleFlip = () => {
     if (isFlipping) return;
