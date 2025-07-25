@@ -10,26 +10,27 @@ export function Coin() {
 
   useEffect(() => {
     // Automatically flip the coin when the component mounts
-    setIsFlipping(true);
-    const timer = setTimeout(() => setIsFlipping(false), 1000); // Corresponds to animation duration
-    return () => clearTimeout(timer);
+    const flipTimer = setTimeout(() => {
+        setIsFlipping(true);
+    }, 500); // slight delay before flip
+
+    const animationTimer = setTimeout(() => {
+        setIsFlipping(false); // Reset after animation
+    }, 1500); // 1s animation duration + delay
+
+    return () => {
+      clearTimeout(flipTimer);
+      clearTimeout(animationTimer);
+    }
   }, []);
-
-
-  const handleFlip = () => {
-    if (isFlipping) return;
-    setIsFlipping(true);
-    setTimeout(() => setIsFlipping(false), 1000); // Duration of the flip animation
-  };
 
   return (
     <div className="group flex flex-col items-center justify-center gap-4 [perspective:1000px]">
       <div
         className={cn(
-          "relative h-48 w-48 cursor-pointer rounded-full transition-transform duration-1000 [transform-style:preserve-3d]",
+          "relative h-48 w-48 rounded-full transition-transform duration-1000 [transform-style:preserve-3d]",
           isFlipping && "[transform:rotateY(1860deg)]"
         )}
-        onClick={handleFlip}
       >
         {/* Front Face */}
         <div className="absolute flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-primary/50 via-primary/80 to-accent/70 p-1 [backface-visibility:hidden]">
@@ -44,9 +45,6 @@ export function Coin() {
             </div>
         </div>
       </div>
-       <div className="text-center">
-            <p className="text-sm text-muted-foreground">Click the coin to see it flip</p>
-        </div>
     </div>
   );
 }
