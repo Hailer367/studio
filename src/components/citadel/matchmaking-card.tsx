@@ -9,15 +9,17 @@ import { useSimulatedWallet } from "@/hooks/use-simulated-wallet";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { ScrollArea } from "../ui/scroll-area";
 import { MatchFoundDialog } from "./match-found-dialog";
+import { RuneIcon } from "../icons/rune-icon";
+import { cn } from "@/lib/utils";
 
 type MatchmakingState = "idle" | "searching";
 
 const availableGames = [
-  { id: 1, opponent: 'RuneMaster69', wager: 0.5, avatar: 'https://placehold.co/40x40' },
-  { id: 2, opponent: 'SolanaSorcerer', wager: 1.0, avatar: 'https://placehold.co/40x40' },
-  { id: 3, opponent: 'ShadowGamer_42', wager: 0.25, avatar: 'https://placehold.co/40x40' },
-  { id: 4, opponent: 'CryptoKing', wager: 5.0, avatar: 'https://placehold.co/40x40' },
-  { id: 5, opponent: 'MysticMarvin', wager: 0.1, avatar: 'https://placehold.co/40x40' },
+  { id: 1, opponent: 'RuneMaster69', wager: 0.5, avatar: 'https://placehold.co/40x40', side: 'dark' },
+  { id: 2, opponent: 'SolanaSorcerer', wager: 1.0, avatar: 'https://placehold.co/40x40', side: 'light' },
+  { id: 3, opponent: 'ShadowGamer_42', wager: 0.25, avatar: 'https://placehold.co/40x40', side: 'light' },
+  { id: 4, opponent: 'CryptoKing', wager: 5.0, avatar: 'https://placehold.co/40x40', side: 'dark' },
+  { id: 5, opponent: 'MysticMarvin', wager: 0.1, avatar: 'https://placehold.co/40x40', side: 'light' },
 ];
 
 export function MatchmakingCard() {
@@ -65,10 +67,13 @@ export function MatchmakingCard() {
                                           <p className="text-xs text-muted-foreground">Wager: ◎ {game.wager.toFixed(2)}</p>
                                       </div>
                                   </div>
-                                  <Button size="sm" onClick={() => handleJoinMatch({ name: game.opponent, avatar: game.avatar })} className="font-headline tracking-wider">
-                                      <Swords className="mr-2 h-4 w-4"/>
-                                      Join
-                                  </Button>
+                                  <div className="flex items-center gap-4">
+                                    <RuneIcon className={cn("h-6 w-6", game.side === 'light' ? 'text-primary' : 'text-accent -scale-x-100')} />
+                                    <Button size="sm" onClick={() => handleJoinMatch({ name: game.opponent, avatar: game.avatar })} className="font-headline tracking-wider">
+                                        <Swords className="mr-2 h-4 w-4"/>
+                                        Join
+                                    </Button>
+                                  </div>
                               </div>
                           ))}
                       </div>
