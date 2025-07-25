@@ -6,7 +6,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Logo } from "../icons/logo";
 import { useSimulatedWallet } from "@/hooks/use-simulated-wallet";
-import { History, Swords, Wallet, PanelLeftOpen, PanelLeftClose, Settings } from "lucide-react";
+import { History, Swords, Wallet, PanelLeftOpen, PanelLeftClose, Settings, FileText } from "lucide-react";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import { useSidePanel } from "@/hooks/use-side-panel";
 
@@ -14,6 +14,7 @@ const navItems = [
     { href: "/", label: "Game", icon: Swords },
     { href: "/history", label: "History", icon: History },
     { href: "/settings", label: "Settings", icon: Settings },
+    { href: "/terms", label: "Terms", icon: FileText },
 ];
 
 export function AppHeader() {
