@@ -20,6 +20,7 @@ import { useSimulatedWallet } from "@/hooks/use-simulated-wallet";
 import { PlusCircle } from "lucide-react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { RuneIcon } from "../icons/rune-icon";
+import { StaticCoin } from "./static-coin";
 
 const createGameSchema = z.object({
   wager: z.coerce.number().min(0.01, "Wager must be at least 0.01 SOL").max(10, "Wager cannot exceed 10 SOL"),
@@ -41,7 +42,8 @@ export function CreateGameCard() {
     },
   });
 
-  const { control, handleSubmit } = form;
+  const { control, handleSubmit, watch } = form;
+  const selectedSide = watch("side");
 
   const onSubmit = (data: CreateGameForm) => {
     setIsCreating(true);
@@ -86,7 +88,7 @@ export function CreateGameCard() {
         <CardDescription>Set your own terms for battle.</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col flex-grow">
-        <CardContent className="flex-grow space-y-6">
+        <CardContent className="flex-grow space-y-4">
           <div className="space-y-2">
             <Label htmlFor="wager-input">Wager Amount (SOL)</Label>
             <div className="flex items-center gap-2">
@@ -108,6 +110,10 @@ export function CreateGameCard() {
             {form.formState.errors.wager && (
               <p className="text-sm text-destructive">{form.formState.errors.wager.message}</p>
             )}
+          </div>
+          
+          <div className="flex items-center justify-center py-4">
+            <StaticCoin side={selectedSide} />
           </div>
 
           <Controller
