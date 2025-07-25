@@ -67,10 +67,10 @@ export function MatchmakingCard() {
                                           <p className="text-xs text-muted-foreground">Wager: ◎ {game.wager.toFixed(2)}</p>
                                       </div>
                                   </div>
-                                  <div className="flex items-center gap-4">
+                                  <div className="flex items-center gap-2">
                                     <RuneIcon className={cn("h-6 w-6", game.side === 'light' ? 'text-primary' : 'text-accent -scale-x-100')} />
                                     <Button size="sm" onClick={() => handleJoinMatch({ name: game.opponent, avatar: game.avatar })} className="font-headline tracking-wider">
-                                        <Swords className="mr-2 h-4 w-4"/>
+                                        <Swords className="h-4 w-4"/>
                                         Join
                                     </Button>
                                   </div>
